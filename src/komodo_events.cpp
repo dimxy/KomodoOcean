@@ -51,6 +51,18 @@ void komodo_eventadd_notarized( komodo_state *sp, char *symbol, int32_t height, 
             komodo_notarized_update(sp, height, ntz.notarizedheight, ntz.blockhash, ntz.desttxid, ntz.MoM, ntz.MoMdepth);
         }
     }
+
+    if (sp != nullptr && komodo_verifynotarization(symbol,ntz.dest,height,ntz.notarizedheight,ntz.blockhash, ntz.desttxid) >= 0)
+    {
+        sp->SetLastNotarizedHeight(ntz.notarizedheight);
+        sp->SetLastNotarizedHash(ntz.blockhash);
+        sp->SetLastNotarizedDestTxId(ntz.desttxid);
+        if ( ntz.MoM != zero && (ntz.MoMdepth&0xffff) > 0 )
+        {
+            sp->SetLastNotarizedMoM(ntz.MoM);
+            sp->SetLastNotarizedMoMDepth(ntz.MoMdepth);
+        }
+    }
 }
 
 /*****
