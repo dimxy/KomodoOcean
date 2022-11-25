@@ -57,7 +57,7 @@ void komodo_eventadd_notarized( komodo_state *sp, char *symbol, int32_t height, 
         sp->SetLastNotarizedHeight(ntz.notarizedheight);
         sp->SetLastNotarizedHash(ntz.blockhash);
         sp->SetLastNotarizedDestTxId(ntz.desttxid);
-        if ( ntz.MoM != zero && (ntz.MoMdepth&0xffff) > 0 )
+        if ( !ntz.MoM.IsNull() && (ntz.MoMdepth&0xffff) > 0 )
         {
             sp->SetLastNotarizedMoM(ntz.MoM);
             sp->SetLastNotarizedMoMDepth(ntz.MoMdepth);
