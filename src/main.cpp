@@ -4380,6 +4380,7 @@ static bool ActivateBestChainStep(bool fSkipdpow, CValidationState &state, CBloc
     // stay on the same chain tip! 
     int32_t notarizedht,prevMoMheight; uint256 notarizedhash,txid;
     notarizedht = komodo_notarized_height(&prevMoMheight,&notarizedhash,&txid);
+    std::cerr << __func__ << " fSkipdpow=" << fSkipdpow << " notarizedht=" << notarizedht << " pindexOldTip->nHeight=" << pindexOldTip->nHeight << " pindexFork=" << pindexFork << " pindexFork->nHeight=" << (pindexFork ? pindexFork->nHeight : 0) << std::endl;
     if ( !fSkipdpow && pindexFork != 0 && pindexOldTip->nHeight > notarizedht && pindexFork->nHeight < notarizedht )
     {
         LogPrintf("pindexOldTip->nHeight.%d > notarizedht %d && pindexFork->nHeight.%d is < notarizedht %d, so ignore it\n",(int32_t)pindexOldTip->nHeight,notarizedht,(int32_t)pindexFork->nHeight,notarizedht);
