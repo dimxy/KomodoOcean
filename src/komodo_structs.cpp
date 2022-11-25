@@ -493,7 +493,7 @@ void komodo_state::SetLastNotarizedDestTxId(const uint256 &in) { last.notarized_
 const uint256& komodo_state::LastNotarizedMoM() const { return last.MoM; }
 void komodo_state::SetLastNotarizedMoM(const uint256 &in) { last.MoM = in; }
 const int32_t& komodo_state::LastNotarizedHeight() const { return last.notarized_height; }
-void komodo_state::SetLastNotarizedHeight(const int32_t in) { last.notarized_height = in; }
+void komodo_state::SetLastNotarizedHeight(const int32_t in) { last.notarized_height = in; std::cerr << "set last notarised height=" << in << std::endl; }
 const int32_t& komodo_state::LastNotarizedMoMDepth() const { return last.MoMdepth; }
 void komodo_state::SetLastNotarizedMoMDepth(const int32_t in) { last.MoMdepth =in; }
 uint64_t komodo_state::NumCheckpoints() const { return NPOINTS.size(); }

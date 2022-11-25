@@ -491,6 +491,7 @@ void komodo_init(int32_t height)
     uint256 zero; 
     uint8_t pubkeys[64][33];
     memset(&zero,0,sizeof(zero));
+    std::cerr << __func__ << " enterred" << std::endl;
     if ( !didinit )
     {
         decode_hex(NOTARY_PUBKEY33,33,NOTARY_PUBKEY.c_str());
@@ -507,7 +508,9 @@ void komodo_init(int32_t height)
             komodo_notarysinit(0,pubkeys,count);
         }
         didinit = true;
+        std::cerr << __func__ << " calling komodo_stateupdate" << std::endl;
         komodo_stateupdate(0,0,0,0,zero,0,0,0,0,0,0,0,0,zero,0);
+        std::cerr << __func__ << " finished komodo_stateupdate" << std::endl;
     }
 }
 

@@ -225,9 +225,11 @@ void komodo_stateupdate(int32_t height,uint8_t notarypubs[][33],uint8_t numnotar
     }
     if ( fp == 0 )
     {
+        std::cerr << __func__ << " opening komodostate file" << std::endl;
         komodo_statefname(fname,chainName.symbol().c_str(),(char *)"komodostate");
         if ( (fp= fopen(fname,"rb+")) != nullptr )
         {
+            std::cerr << __func__ << " opened for read komodostate file, calling komodo_faststateinit" << std::endl;
             if ( komodo_faststateinit(sp, fname, symbol, dest) )
                 fseek(fp,0,SEEK_END);
             else
@@ -238,8 +240,10 @@ void komodo_stateupdate(int32_t height,uint8_t notarypubs[][33],uint8_t numnotar
                     ;
             }
         } 
-        else 
+        else  {
+            std::cerr << __func__ << " creating new komodostate file" << std::endl;
             fp = fopen(fname,"wb+"); // the state file probably did not exist, create it.
+        }
 
         if (ShutdownRequested()) { fclose(fp); return; }
         

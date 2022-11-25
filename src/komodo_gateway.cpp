@@ -489,8 +489,10 @@ bool komodo_faststateinit(komodo_state *sp,const char *fname,char *symbol,char *
         }
         LogPrintf("took %d seconds to process %s %ldKB\n",(int32_t)(time(NULL)-starttime),fname,datalen/1024);
         free(filedata);
+        std::cerr << __func__ << " processed okay fname=" << fname << std::endl;
         return true;
     }
+    std::cerr << __func__ << " failed to read fname=" << fname << std::endl;
     return false;
 }
 
